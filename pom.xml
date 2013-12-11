@@ -2,21 +2,21 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>7</version>
+        <artifactId>randy</artifactId>
+        <groupId>dk.yousee</groupId>
+        <version>1.5</version>
     </parent>
 
     <groupId>uk.me.mjt</groupId>
     <artifactId>log4j-json</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1-yousee-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>log4j-json</name>
     
     <description>Log4j layout in JSON format, for importing into databases
     that like JSON, like Google's BigQuery.</description>
-    <url>https://github.com/michaeltandy/log4j-json</url>
+    <url>https://github.com/YouSee/log4j-json</url>
     <licenses>
         <license>
             <name>MIT License</name>
@@ -25,9 +25,10 @@
         </license>
     </licenses>
     <scm>
-        <connection>scm:git:https://github.com/michaeltandy/log4j-json.git</connection>
-        <url>scm:git:https://github.com/michaeltandy/log4j-json.git</url>
-        <developerConnection>scm:git:https://github.com/michaeltandy/log4j-json.git</developerConnection>
+        <connection>scm:git:https://github.com/YouSee/randy-${project.name}.git</connection>
+        <developerConnection>scm:git:https://github.com/YouSee/${project.name}.git</developerConnection>
+        <url>scm:git:https://github.com/YouSee/log4j-json.git</url>
+        <tag>HEAD</tag>
     </scm>
     <developers>
         <developer>
@@ -36,17 +37,35 @@
             <email>pom@mjt.me.uk</email>
             <url>http://www.mjt.me.uk</url>
         </developer>
+        <developer>
+            <id>jablo</id>
+            <name>Jacob Lorensen</name>
+            <email>jalor@yousee.dk</email>
+        </developer>
     </developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <repositories>  
+        <repository>
+            <id>nexus</id>
+            <url>http://hudson01.yousee.idk:8081/nexus/content/groups/tays_repositories</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+        </repository>
+    </repositories>
+
+
+
     <dependencies>
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.16</version>
+            <version>1.2.17</version>
         </dependency>
         
         <dependency>

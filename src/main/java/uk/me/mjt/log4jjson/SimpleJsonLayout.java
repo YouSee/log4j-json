@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import org.apache.log4j.Layout;
+import org.apache.log4j.MDC;
 import org.apache.log4j.spi.LoggingEvent;
 
 /**
@@ -13,12 +14,14 @@ import org.apache.log4j.spi.LoggingEvent;
  * @author Michael Tandy
  */
 public class SimpleJsonLayout extends Layout {
-    private final Gson gson = new GsonBuilder().create();
+    public static final String GSONLOGSERIALIZER = "gson-log-serializer";
+    private final Gson defaultGson = new GsonBuilder().create();
     private final String hostname = getHostname().toLowerCase();
     private final String username = System.getProperty("user.name").toLowerCase();
 
     @Override
     public String format(LoggingEvent le) {
+        Gson gson = getGsonFormatter();
         Map<String, Object> r = new LinkedHashMap();
         r.put("timestamp", le.timeStamp);
         r.put("date", new Date(le.timeStamp));
@@ -39,6 +42,17 @@ public class SimpleJsonLayout extends Layout {
         r.put("throwable", formatThrowable(le));
         after(le, r);
         return gson.toJson(r) + "\n";
+    }
+
+    protected Gson getGsonFormatter() {
+        try {
+            Gson gson = (Gson) MDC.get(GSONLOGSERIALIZER);
+            if (gson != null)
+                return gson;
+        } catch (Exception e) {
+            // ignore, if there's no gson-formatter or it cannot be cast, just use the defaultGson formatter
+        }
+        return defaultGson;
     }
 
     /**

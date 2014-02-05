@@ -4,7 +4,7 @@
     <parent>
         <artifactId>randy</artifactId>
         <groupId>dk.yousee</groupId>
-        <version>1.5</version>
+        <version>1.8</version>
     </parent>
 
     <groupId>uk.me.mjt</groupId>
@@ -51,7 +51,7 @@
     <repositories>  
         <repository>
             <id>nexus</id>
-            <url>http://hudson01.yousee.idk:8081/nexus/content/groups/tays_repositories</url>
+            <url>http://nexus.yousee.idk/nexus/content/groups/tays_repositories</url>
             <releases>
                 <enabled>true</enabled>
                 <updatePolicy>always</updatePolicy>
